@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>IRD Tax Calculator</title>
+
+    <!-- Link to CSS -->
+    <link href="style.css" rel="stylesheet">
+
+    <!-- Link to Script -->
+    <script src="script.js" type="text/javascript"></script>
+
+
+
+</head>
+<body>
+
+    <h1>IRD Tax Calculator</h1>
+
+    <form action="">
+
+        <fieldset>
+            <legend>Please type in your info here</legend>
+
+            <p>
+                <label>Your Gross Salary: </label>
+                <input type="text" id="grossSalary" />
+                <button type="button" onclick="calculateTax()">
+                    Generate Tax
+                </button>
+            </p>
+
+            <p id="incomeTax">
+                <label>Your income Tax:</label>
+            </p>
+
+            <p>
+                <label>Your Superannuation:</label>
+            </p>
+
+            <p>
+                <label>Your Studylink repayments:</label>
+            </p>
+
+        </fieldset>
+    </form>
+
+
+</body>
+</html>
