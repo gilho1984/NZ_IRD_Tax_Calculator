@@ -1,0 +1,9 @@
+.container{
+    width: 500px;
+    clear: both;
+}
+
+.container input[type="text"]{
+    width: 100%;
+    clear: both;
+}

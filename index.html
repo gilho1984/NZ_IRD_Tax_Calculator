@@ -17,33 +17,54 @@
 
     <h1>IRD Tax Calculator</h1>
 
-    <form action="">
+    <div class="container">
+        <form action="">
 
-        <fieldset>
-            <legend>Please type in your info here</legend>
+            <fieldset>
+                <legend>Please type in your info here</legend>
 
-            <p>
-                <label>Your Gross Salary: </label>
-                <input type="text" id="grossSalary" />
+                <p>
+                    <label>Your Gross Salary: </label>
+                    <input type="text" id="grossSalary" class="textBox"/>
+                </p>
+
+                <p>
+                    <label>What is your super percentage? (put zero if you aren't on one) </label>
+                    <input type="text" id="superPercentage" class="textBox"/>
+                </p>
+
+                <p>
+                    <label>Do you have a student loan?<br></label>
+                    <input type="radio" name="loan" value="yes" id="loanYes"/>Yes<br>
+                    <input type="radio" name="loan" value="no" id="loanNo"/>No<br>
+                </p>
+
+
+
+                <!--<p id="incomeTax">
+                    <label>Your income Tax:</label>
+                </p>
+
+                <p id="super">
+                    <label>Your Superannuation:</label>
+                </p>
+
+                <p id="ACC">
+                    <label>Your ACC: </label>
+                </p>
+
+                <p id="studylink">
+                    <label>Your Studylink repayments:</label>
+                </p>-->
+
                 <button type="button" onclick="calculateTax()">
                     Generate Tax
                 </button>
-            </p>
 
-            <p id="incomeTax">
-                <label>Your income Tax:</label>
-            </p>
+            </fieldset>
+        </form>
+    </div>
 
-            <p>
-                <label>Your Superannuation:</label>
-            </p>
-
-            <p>
-                <label>Your Studylink repayments:</label>
-            </p>
-
-        </fieldset>
-    </form>
 
 
 </body>
