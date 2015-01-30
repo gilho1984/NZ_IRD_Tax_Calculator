@@ -5,20 +5,15 @@ function calculateTax(){
 
     var salaryInteger;
     var superAnnuation;
+    var actualTax;
+    var superAnnuationPayment;
     var loanRepayment;
-    var accPayment;
 
     // Get User Salary Figure and store it as integer (pass it to methods)
     salaryInteger = parseInt(document.getElementById("grossSalary").value);
 
-    // Display mechanism
-    //taxOutput = document.getElementById("incomeTax");
-    //taxOutput.innerHTML += salaryInteger;
-
-
     //Calculate and Add Income Tax
-    alert(calculateIncomeTax(10000));
-
+    actualTax = calculateIncomeTax(salaryInteger);
 
     //Calculate and Add Student Loan
     var haveLoan = studentLoan();
@@ -26,7 +21,36 @@ function calculateTax(){
         loanRepayment = loanRepaymentCalculator(salaryInteger);
     }
 
+    //Get Super figure
+    superAnnuation = parseInt(document.getElementById('superPercentage').value);
+    if (superAnnuation > 0){
+        superAnnuationPayment = superCalculator(superAnnuation, salaryInteger);
+    } else {
+        superAnnuationPayment = 0;
+    }
 
+
+    // Display mechanism
+    //taxOutput = document.getElementById("incomeTax");
+    //taxOutput.innerHTML += salaryInteger;
+
+    var grossIncomeOutput = document.getElementById('grossIncome');
+    var taxBreakdownOutput = document.getElementById('taxBreakdown');
+    var incomeTaxOutput = document.getElementById('incomeTax');
+    var loanRepaymentOutput = document.getElementById('loanRepayment');
+    var superPayment = document.getElementById('superPayment');
+    var expenses = document.getElementById('totalOut');
+    var netDeposit = document.getElementById('netIncome');
+    var actualExpenses = actualTax + loanRepayment + superAnnuationPayment;
+    var totalDeposit = salaryInteger - actualExpenses;
+
+    taxBreakdownOutput.innerHTML = "Tax Breakdown";
+    grossIncomeOutput.innerHTML = "Gross Income: $" + salaryInteger;
+    incomeTaxOutput.innerHTML = "Income Tax: $" + actualTax;
+    loanRepaymentOutput.innerHTML = "Studylink Repayments: $" + loanRepayment;
+    superPayment.innerHTML = "Super Payment: $" + superAnnuationPayment;
+    expenses.innerHTML = "Total Taken Away: $" + actualExpenses;
+    netDeposit.innerHTML = "Actual Money in Bank: $" + totalDeposit;
 
 }
 
@@ -58,13 +82,13 @@ function calculateIncomeTax(grossIncome){
     if(grsIncomeCat == 1){
         incomeTax = 0;
     } else if(grsIncomeCat == 2){
-        incomeTax = grossIncome*0.1005;
+        incomeTax = grossIncome*0.1195;
     } else if(grsIncomeCat == 3){
-        incomeTax = (14000*0.1005) + ((grossIncome - 14000)*17.05);
+        incomeTax = (14000*0.1195) + ((grossIncome - 14000)*0.1895);
     } else if(grsIncomeCat == 4){
-        incomeTax = (14000*0.1005) + (34000*0.1705) + (grossIncome - ((14000*0.1005) + (34000*0.1705)));
+        incomeTax = (14000*0.1195) + (34000*0.1895) + ((grossIncome - ((14000*0.1195) + (34000*0.1895)))*0.3145);
     } else if(grsIncomeCat == 5){
-        incomeTax = (14000*0.1005) + (34000*0.1705) + (22000*0.3) + (grossIncome - ((14000*0.1005) + (34000*0.1705) + (22000*0.3)));
+        incomeTax = (14000*0.1195) + (34000*0.1895) + (22000*0.3145) + ((grossIncome - ((14000*0.1195) + (34000*0.1895) + (22000*0.3145)))*0.3445);
     } else {
         incomeTax = 0;
     }
@@ -95,7 +119,12 @@ function loanRepaymentCalculator(grossIncome){
     return  loanRepayment;
 }
 
+function superCalculator(superRate, grossIncome){
 
+    var returnRate = grossIncome * (superRate/100);
+    return returnRate;
+
+}
 
 
 

@@ -39,24 +39,6 @@
                     <input type="radio" name="loan" value="no" id="loanNo"/>No<br>
                 </p>
 
-
-
-                <!--<p id="incomeTax">
-                    <label>Your income Tax:</label>
-                </p>
-
-                <p id="super">
-                    <label>Your Superannuation:</label>
-                </p>
-
-                <p id="ACC">
-                    <label>Your ACC: </label>
-                </p>
-
-                <p id="studylink">
-                    <label>Your Studylink repayments:</label>
-                </p>-->
-
                 <button type="button" onclick="calculateTax()">
                     Generate Tax
                 </button>
@@ -65,6 +47,21 @@
         </form>
     </div>
 
+    <h1> </h1>
+
+    <div>
+        <form class="container">
+            <fieldset>
+                <legend id="taxBreakdown"> </legend>
+                    <p id="grossIncome"> </p>
+                    <p id="incomeTax"> </p>
+                    <p id="loanRepayment"> </p>
+                    <p id="superPayment"> </p>
+                    <p id="totalOut"> </p>
+                    <p id="netIncome"> </p>
+            </fieldset>
+        </form>
+    </div>
 
 
 </body>
