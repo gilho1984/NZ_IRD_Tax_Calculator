@@ -1,10 +1,14 @@
 .container{
     width: 500px;
     clear: both;
+    font-family: "sans-serif calibri";
 }
 
 .container input[type="text"]{
     width: 100%;
     clear: both;
+}
 
+h1{
+    font-family: "sans-serif calibri";
 }

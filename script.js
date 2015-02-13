@@ -12,6 +12,10 @@ function calculateTax(){
     // Get User Salary Figure and store it as integer (pass it to methods)
     salaryInteger = parseInt(document.getElementById("grossSalary").value);
 
+    if(salaryInteger == null || salaryInteger == NaN ){
+        alert("Type in a salary");
+    }
+
     //Calculate and Add Income Tax
     actualTax = calculateIncomeTax(salaryInteger);
 
@@ -19,6 +23,8 @@ function calculateTax(){
     var haveLoan = studentLoan();
     if(haveLoan){
         loanRepayment = loanRepaymentCalculator(salaryInteger);
+    } else {
+        loanRepayment = 0;
     }
 
     //Get Super figure
@@ -43,6 +49,8 @@ function calculateTax(){
     var netDeposit = document.getElementById('netIncome');
     var actualExpenses = actualTax + loanRepayment + superAnnuationPayment;
     var totalDeposit = salaryInteger - actualExpenses;
+    var weekly = document.getElementById('weeklyIncome');
+    var weeklyIncome = parseInt(totalDeposit/52);
 
     taxBreakdownOutput.innerHTML = "Tax Breakdown";
     grossIncomeOutput.innerHTML = "Gross Income: $" + salaryInteger;
@@ -51,6 +59,8 @@ function calculateTax(){
     superPayment.innerHTML = "Super Payment: $" + superAnnuationPayment;
     expenses.innerHTML = "Total Taken Away: $" + actualExpenses;
     netDeposit.innerHTML = "Actual Money in Bank: $" + totalDeposit;
+    weekly.innerHTML = "Weekly Income: $" + weeklyIncome;
+
 
 }
 
@@ -68,9 +78,9 @@ function calculateIncomeTax(grossIncome){
 
     if(grossIncome < 0){
         grsIncomeCat = 1;
-    } else if(grossIncome > 0 && grossIncome < 14,001){
+    } else if(grossIncome > 0 && grossIncome < 14001){
         grsIncomeCat = 2;
-    } else if(grossIncome > 14,000 && grossIncome < 48001){
+    } else if(grossIncome > 14000 && grossIncome < 48001){
         grsIncomeCat = 3;
     } else if(grossIncome > 48000 && grossIncome < 70001){
         grsIncomeCat = 4;
@@ -82,13 +92,13 @@ function calculateIncomeTax(grossIncome){
     if(grsIncomeCat == 1){
         incomeTax = 0;
     } else if(grsIncomeCat == 2){
-        incomeTax = grossIncome*0.1195;
+        incomeTax = grossIncome*0.1005;
     } else if(grsIncomeCat == 3){
-        incomeTax = (14000*0.1195) + ((grossIncome - 14000)*0.1895);
+        incomeTax = 1470 + ((grossIncome - 14000)*0.1705);
     } else if(grsIncomeCat == 4){
-        incomeTax = (14000*0.1195) + (34000*0.1895) + ((grossIncome - ((14000*0.1195) + (34000*0.1895)))*0.3145);
+        incomeTax = 7420 + ((grossIncome - 48000)*0.3);
     } else if(grsIncomeCat == 5){
-        incomeTax = (14000*0.1195) + (34000*0.1895) + (22000*0.3145) + ((grossIncome - ((14000*0.1195) + (34000*0.1895) + (22000*0.3145)))*0.3445);
+        incomeTax = 14020 + ((grossIncome - 70000)*0.33);
     } else {
         incomeTax = 0;
     }
